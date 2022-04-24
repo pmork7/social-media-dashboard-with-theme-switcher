@@ -10,6 +10,7 @@ let followerCountText = document.getElementsByClassName("follower-count-text");
 let metricCards = document.getElementsByClassName("metric-card");
 let metricHeaders = document.getElementsByClassName("metric-header");
 let metricNumber = document.getElementsByClassName("metric-number");
+let topHeaderContainer = document.getElementsByClassName("top-header-container")[0];
 
 
 darkModeSwitch.addEventListener("click", function() {
@@ -121,3 +122,19 @@ function setLightMode() {
     }
   }
 }
+
+let x = window.matchMedia("(max-width: 375px)");
+
+function addHorizontalLine(x) {
+  if (x.matches) {
+    let line = document.createElement("div");
+    line.classList.add("line-style");
+    topHeaderContainer.appendChild(line);
+  } else {
+    if (topHeaderContainer.children.length === 3) {
+      topHeaderContainer.removeChild(topHeaderContainer.lastChild);
+    }
+  }
+}
+addHorizontalLine(x);
+x.addListener(addHorizontalLine);
